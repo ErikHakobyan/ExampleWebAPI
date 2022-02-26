@@ -19,9 +19,9 @@ namespace ExampleWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> Get()
+        public async Task<IEnumerable<User>> Get(string sortBy = "Id")
         {
-            return await _userRepository.GetUsersAsync();
+            return await _userRepository.GetUsersAsync(sortBy);
         }
 
         [HttpGet("{id}")]

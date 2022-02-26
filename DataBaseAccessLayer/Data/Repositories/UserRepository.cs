@@ -36,9 +36,10 @@ public class UserRepository : IUserRepository
         return entity;
     }
 
-    public async Task<IEnumerable<User>> GetUsersAsync()
+    public async Task<IEnumerable<User>> GetUsersAsync(string sortBy = "Id")
     {
-        return await _context.Users.ToListAsync();
+        return (await _context.Users
+            .ToListAsync()).OrderDynamic(sortBy);
     }
 
     public async Task UpdateUser(int id, User user)
